@@ -48,33 +48,73 @@
         <h1>REGISTRO DE PERSONAS </h1>
         <p>Para medir la frecuencia cardíaca, coloca 2 dedos en el cuello junto a la tráquea, justo sobre una arteria
             que late y cuenta el número de latidos en 1 minuto. </p>
-        <br><br>
-        <form action="/action_page.php">
+        <form action="/action_page.php" class="col-4">
             <label for="fname">Identificación:</label><br>
-            <input type="number" id="fId" name="fId"><br>
+            <input type="number" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            <br>
+
             <label for="fname">Nombre:</label><br>
-            <input type="text" id="fname" name="fname">
+            <input type="text" id="fname" name="fname" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
             <br>
+
             <label for="sexo">Sexo:</label><br>
-            <input type="radio" name="sexo" value="mujer" /> Mujer
-            <input type="radio" name="sexo" value="hombre" checked="checked" /> Hombre
-            <br>
-            <label for="lname">Edad</label><br>
-            <input type="number" id="edad" name="edad"><br>
-            <label for="fname">Pulsacion:</label><br>
-            <input type="number" id="fpulsacion" name="fpulsacion">
+            <div class="form-check  form-check-inline">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Hombre
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Mujer
+                </label>
+            </div>
             <br><br>
-            <input type="button" value="Calcular" onclick="pulsaciones()">
-            <input type="button" value="Registrar">
-            <input type="button" value="Cancelar">
+
+            <label for="lname">Edad</label><br>
+            <input type="number" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" id="edad" name="edad">
+            <br>
+
+            <label for="fname">Pulsacion:</label><br>
+            <input type="number" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" id="fpulsacion" name="fpulsacion">
+            <br>
+
+            <input type="button" class="btn btn-info" value="Calcular" onclick="pulsaciones()">
+            <input type="button" class="btn btn-success" value="Registrar">
+            <input type="button" class="btn btn-danger" value="Cancelar">
         </form>
     </div>
+    <br>
+    <br>
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted">
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">Coloque el contenido de pie de página adhesivo aquí.</font>
+                </font>
+            </span>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script>
+
         function pulsaciones() {
 
-            var edad = Number($('#edad').val());
-            var pulsacion = 220 - edad;
+            var sexo = $('input[name=flexRadioDefault]').val();
+            var edad = $('#edad').val();
+
+            var pulsacion = 0
+
+            if (sexo == 'Mujer') {
+                pulsacion = (220 - edad) / 10;
+            } else {
+                pulsacion = (210 - edad) / 10;
+            }
             var resultado = $("#fpulsacion").val(pulsacion);
 
         }
